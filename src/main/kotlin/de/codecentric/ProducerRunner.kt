@@ -10,10 +10,7 @@ import java.time.LocalDateTime
 
 
 fun main(args: Array<String>) {
-
     val log: Logger = LoggerFactory.getLogger("de.codecentric.ProducerRunner")
-
-    log.info("starting up")
 
     val kafka = Kafka("localhost:9092")
     val topic = "kt-topic"

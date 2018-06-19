@@ -9,10 +9,7 @@ import org.slf4j.LoggerFactory
 
 
 fun main(args: Array<String>) {
-
     val log: Logger = LoggerFactory.getLogger("de.codecentric.ConsumerRunner")
-
-    log.info("starting up")
 
     val kafka = Kafka("localhost:9092")
     val topic = "kt-topic"

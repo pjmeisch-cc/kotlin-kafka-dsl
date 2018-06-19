@@ -7,23 +7,13 @@ package de.codecentric
 class KafkaDSL(bootstrapServers: String) {
     private val kafka = Kafka(bootstrapServers)
 
-    fun producer(topic: String, produce: Producer.() -> Unit) {
-        Producer(kafka, topic).produce()
-    }
+    fun producer(topic: String, doProduce: Producer.() -> Unit) =
+            Producer(kafka, topic).doProduce()
 
-    fun consumer(topic: String, consume: ConsumerDSL.() -> Unit) {
-        ConsumerDSL(kafka, topic).consume()
-    }
+    fun consumer(topic: String, doConsume: Consumer.() -> Unit) =
+            Consumer(kafka, topic).doConsume()
 }
 
-fun kafka(bootstrapServers: String, init: KafkaDSL.() -> Unit) {
-    KafkaDSL(bootstrapServers).init()
-}
+fun kafka(bootstrapServers: String, init: KafkaDSL.() -> Unit) =
+        KafkaDSL(bootstrapServers).init()
 
-class ConsumerDSL(kafka: Kafka, topic: String) {
-    private val consumer = Consumer(kafka, topic)
-
-    fun consume(handler: (String) -> Unit) = consumer.consume(handler)
-
-    fun stop() = consumer.stop()
-}

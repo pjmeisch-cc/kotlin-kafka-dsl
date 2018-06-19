@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory
 
 
 fun main(args: Array<String>) {
-
     val log: Logger = LoggerFactory.getLogger("de.codecentric.ConsumerRunnerDSL")
 
     kafka("localhost:9092") {
