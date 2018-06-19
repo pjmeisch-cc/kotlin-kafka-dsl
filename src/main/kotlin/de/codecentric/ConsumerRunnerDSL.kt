@@ -12,8 +12,6 @@ fun main(args: Array<String>) {
 
     val log: Logger = LoggerFactory.getLogger("de.codecentric.ConsumerRunnerDSL")
 
-    log.info("starting up")
-
     kafka("localhost:9092") {
         consumer("kt-topic") {
             Runtime.getRuntime().addShutdownHook(Thread(Runnable {

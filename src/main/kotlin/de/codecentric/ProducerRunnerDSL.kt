@@ -13,8 +13,6 @@ fun main(args: Array<String>) {
 
     val log: Logger = LoggerFactory.getLogger("de.codecentric.ProducerRunnerDSL")
 
-    log.info("starting up")
-
     kafka("localhost:9092") {
         producer("kt-topic") {
             (1..10).forEach {
