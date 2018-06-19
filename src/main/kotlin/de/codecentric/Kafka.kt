@@ -50,12 +50,12 @@ class Consumer(kafka: Kafka, topic: String) {
         }
     }
 
-    fun consume(onMessage: (value: String) -> Unit) = Thread(Runnable {
+    fun consume(handler: (value: String) -> Unit) = Thread(Runnable {
         keepGoing = true
         kafkaConsumer.use { kc ->
             while (keepGoing) {
                 kc.poll(500)?.forEach {
-                    onMessage(it?.value() ?: "???")
+                    handler(it?.value() ?: "???")
                 }
             }
         }
