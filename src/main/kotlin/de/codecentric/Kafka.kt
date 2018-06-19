@@ -45,8 +45,9 @@ class Consumer(kafka: Kafka, topic: String) {
         config[ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG] = StringDeserializer::class.java
         config[ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG] = StringDeserializer::class.java
         config[ConsumerConfig.GROUP_ID_CONFIG] = UUID.randomUUID().toString()
-        kafkaConsumer = KafkaConsumer(config)
-        kafkaConsumer.subscribe(listOf(topic))
+        kafkaConsumer = KafkaConsumer<String, String>(config).apply {
+            subscribe(listOf(topic))
+        }
     }
 
     fun consume(onMessage: (value: String) -> Unit) = Thread(Runnable {
