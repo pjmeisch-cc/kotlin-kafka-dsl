@@ -13,7 +13,7 @@ import java.util.*
  * @author P.J. Meisch (peter-josef.meisch@codecentric.de)
  */
 
-class Kafka(val bootstrapServers: String)
+data class Kafka(val bootstrapServers: String)
 
 class Producer(kafka: Kafka, private val topic: String) {
     private val kafkaProducer: KafkaProducer<String, String>
